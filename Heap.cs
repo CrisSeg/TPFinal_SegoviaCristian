@@ -62,9 +62,9 @@ namespace tpfinal
         
         public void copiarLista(List<Proceso> l)
         {
-			foreach (var elem in c) {
-        		l.Add(elem);
-			}	
+               foreach (var elem in c) {
+        	      l.Add(elem);
+		}	
         }
-	}
+    }
 }
