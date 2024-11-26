@@ -75,53 +75,24 @@ namespace tpfinal
         public void ShortesJobFirst(List<Proceso> datos, List<Proceso> collected)
         {
         	int posicion = datos.Count-1;
+		bool h = true;
         	
         	foreach (var elem in datos) {
-        		collected.Add(elem);
+        		collected.Add(elem, h);
         	}
-        	
-        	while (posicion > 0) {
-        		int posPadre = posicion/2;
-        		if (!comparar(collected[posPadre].tiempo, collected[posicion].tiempo)) { break; }
-        		
-        		if (comparar(collected[posPadre].tiempo, collected[posicion].tiempo)){
-        		    	Swap(collected, posPadre, posicion);
-        		}
-        		
-        		posicion--;
-        	}
+		col.copiarLista(collected);
         }
 
 
         public void PreemptivePriority(List<Proceso> datos, List<Proceso> collected)
         {
         	int pos = datos.Count-1;
+		bool h = true;
         	
         	foreach (var elem in datos) {
-        		collected.Add(elem);
+        		collected.Add(elem, !h);
         	}
-        	
-        	while (pos > 0) { 
-        		int posPadre = pos/2;
-        		
-        		if(comparar(collected[posPadre].prioridad, collected[pos].prioridad)) {	break; }
-        		
-        		if (!comparar(collected[posPadre].prioridad, collected[pos].prioridad)) {
-        			Swap(collected, posPadre, pos);
-        		}
-        		
-        		pos--;
-        	}
-        }
-		
-        public bool comparar(int a, int b)
-        {	return a > b;  }
-
-        public void Swap(List<Proceso> datos, int a, int b)
-        { 
-        	Proceso swap = datos[a];
-        	datos[a] = datos[b];
-        	datos[b] = swap;
+        	col.copiarLista(collected);
         }
     }
 }
